@@ -1,0 +1,16 @@
+{
+    "name": "gamzd/mvc_framework",
+    "authors": [
+        {
+            "name": "Pedro Gamela",
+            "email": "pgamela@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+
+        }
+    },    
+    "require": {}
+}
