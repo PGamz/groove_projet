@@ -4,15 +4,21 @@
 namespace app\migrations;
 
 
+use app\core\Application;
+
 class m0001_initial
 {
     public function up()
     {
-        echo "Applying migration";
+        $db = \app\core\Application::$app->db;
+        $SQL = "";
+        $db->pdo->exec($SQL);
     }
 
     public function down()
     {
-        echo "Down migration";
+        $db = \app\core\Application::$app->db;
+        $SQL = "";
+        $db->pdo->exec($SQL);
     }
 }
