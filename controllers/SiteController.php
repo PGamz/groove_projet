@@ -16,7 +16,7 @@ class SiteController extends Controller
     public function home()
     {
         $params = [
-            'name' => "Gogoo"
+
         ];
         return $this->render('home', $params);
 
@@ -26,9 +26,11 @@ class SiteController extends Controller
         return $this->render('signup');
     }
 
-    public function signupData(Request $request)
+    public function signupData(Request $request): string
     {
 
         return 'Handling submitted data';
     }
+
+
 }

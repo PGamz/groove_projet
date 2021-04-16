@@ -1,5 +1,8 @@
+<?php
+/** @var  $this \app\core\View*/
+$this->title = 'Home';
+?>
 <section class="intro">
-<h3>Welcome <?php echo $name ?></h3>
     <!-- content -->
     <div class="content">
         <!-- top -->
@@ -8,12 +11,8 @@
         </div>
         <!-- center -->
         <div class="login">
-
             <a class="button" href="signup" target="_blank"> Sign up</a>
-
-
         </div>
-
     </div>
 
 </section>

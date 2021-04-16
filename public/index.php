@@ -10,6 +10,7 @@ $dotenv->load();
 
 
 $config =[
+    'userClass' => \app\models\User::class,
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -28,6 +29,10 @@ $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/signup', [AuthController::class, 'signup']);
 $app->router->post('/signup', [AuthController::class, 'signup']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
+$app->router->get('/profile', [AuthController::class, 'profile']);
+
+
 
 
 

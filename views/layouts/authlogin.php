@@ -1,3 +1,7 @@
+<?php
+use app\core\Application;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-    <title>Sign in</title>
+    <title><?php echo $this->title ?> </title>
 
 </head>
 
@@ -18,14 +22,14 @@
     <!-- logo -->
     <div class="logo-container">
         <a class="logo" href="/">
-            <img src="./gfx/GROOVE_test_size.svg" alt="logo">
+            <img src="/assets/gfx/GROOVE_test_size.svg" alt="logo">
         </a>
 
     </div>
 
     <!--toggle-->
     <div class="burguer">
-        <img src="./gfx/toggle.svg" alt="toggle">
+        <img src="/assets/gfx/toggle.svg" alt="toggle">
     </div>
 
     <!-- nav -->
@@ -62,6 +66,13 @@
 <main>
 
     <section class="block size_d">
+
+        <?php if (Application::$app->session->getFlash('success')): ?>
+        <div class="alert">
+            <?php echo Application::$app->session->getFlash('success')?>
+        </div>
+        <?php endif; ?>
+
         <div class="inscription">
             {{content}}
                 <div >
@@ -109,7 +120,7 @@
 
 
 <!-- script -->
-<script src="js/script.js"></script>
+<script src="/assets/js/script.js"></script>
 
 
 

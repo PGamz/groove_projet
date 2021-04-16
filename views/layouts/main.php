@@ -1,3 +1,10 @@
+<?php
+
+use app\core\Application;
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +13,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>GROOVE</title>
+    <link href="/assets/css/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title><?php echo $this->title ?> </title>
 </head>
 
 <body>
@@ -17,14 +24,14 @@
         <!-- logo -->
         <div class="logo-container">
             <a class="logo" href="/">
-                <img src="./gfx/GROOVE_test_size.svg" alt="logo">
+                <img src="/assets/gfx/GROOVE_test_size.svg" alt="logo">
             </a>
 
         </div>
 
         <!--toggle-->
         <div class="burguer">
-            <img src="./gfx/toggle.svg" alt="toggle">
+            <img src="/assets/gfx/toggle.svg" alt="toggle">
         </div>
 
         <!-- nav -->
@@ -48,16 +55,26 @@
                 <li class="nav-link"><!-- show -->
                     <a href="live">Live</a>
                 </li>
+                <?php if (Application::isGuest()): ?>
+                    <li class="nav-link"><!-- login -->
+                        <a href="login">Login</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-link"><!-- login -->
+                        <a href="/profile">Welcome - <?php echo Application::$app->user->getDisplayName() ?></a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="/logout">Logout </a>
 
-                <li class="nav-link"><!-- login -->
-                    <a href="login">Login</a>
-                </li>
+                    </li>
+                <?php endif; ?>
             </ul>
 
         </nav>
     </header>
     <!-- main -->
     <main>
+
 
         {{content}}
 
@@ -66,7 +83,7 @@
 
     <!-- footer -->
     <footer>
-
+        <nav>
         <ul class="nav-links">
 
             <li class="nav-link"><!-- home -->
@@ -85,10 +102,16 @@
                 <a href="live">Live</a>
             </li>
 
-            <li class="nav-link"><!-- login -->
-                <a href="login">Login</a>
-            </li>
+            <?php if (Application::isGuest()): ?>
+                <li class="nav-link"><!-- login -->
+                    <a href="login">Login</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-link"><!-- login -->
+                    <a href="/logout">Logout </a>
 
+                </li>
+            <?php endif; ?>
         </ul>
 
         </nav>
@@ -96,7 +119,7 @@
 
 
     <!-- script -->
-    <script src="js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
 
 
 
