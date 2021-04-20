@@ -1,0 +1,49 @@
+<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+        <g transform="rotate(180 50 50)">
+        <rect x="0" fill="#fff" width="3" height="100">
+            <animate
+                attributeName="height"
+                dur="1s"
+                repeatCount="indefinite"
+                values="30;100;30"
+            />
+        </rect>
+        <rect x="20" fill="#fff" width="3" height="100">
+            <animate
+                attributeName="height"
+                dur="1s"
+                repeatCount="indefinite"
+                values="30;100;30"
+                begin="0.1s"
+            />
+        </rect>
+        <rect x="40" fill="#fff" width="3" height="100">
+            <animate
+                attributeName="height"
+                dur="1s"
+                repeatCount="indefinite"
+                values="30;100;30"
+                begin="0.3s"
+            />
+        </rect>
+        <rect x="60" fill="#fff" width="3" height="100">
+            <animate
+                attributeName="height"
+                dur="1s"
+                repeatCount="indefinite"
+                values="30;100;30"
+                begin="0.5s"
+            />
+        </rect>
+        <rect x="80" fill="#fff" width="3" height="100">
+            <animate
+                attributeName="height"
+                dur="1s"
+                repeatCount="indefinite"
+                values="30;100;30"
+                begin="0.1s"
+            />
+        </rect>
+        </g>
+    </svg>

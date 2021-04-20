@@ -1,0 +1,833 @@
+/* *****************************************************************
+VARS
+***************************************************************** */
+:root {
+    font-size:10px ;
+	--max-width: 1920px;
+    --block-width:1280px;
+    --small-block-width:1028px;
+    --text-width:650px;
+	--font-text: 'Overpass', sans-serif;
+    --font-weight: bold;	
+	--description-font-size: 1.8rem;
+    --video-detail-font-size:1.9rem;
+    --body-font-size: 2.5rem;
+	--intro-font-size:3rem;
+	--line-height: 2.0rem;
+    --bf-af-height:0.05rem;
+    --color-body: rgb(33, 32, 32);
+	--color-text: rgb(255, 255, 255);
+	--color-link: rgb(117, 117, 117);
+	--color-link-hover:rgb(143, 143, 143);
+    --color-link-active:rgb(255, 253, 253);
+    --color-content: rgba(149, 149, 149, 0.556);
+    --color-line: rgba(153, 150, 150, 0.836);
+	--burguer-bkg-color:rgba(0, 0, 0, 0.844);
+	--color-button-text:rgba(149, 149, 149, 0.556);
+    --color-button-bkg:rgba(0, 0, 0, 0.638);
+    --color-button-hover:rgb(0, 0, 0);
+    --intro-bkg-image: url(../gfx/groove_background.jpg);
+	
+}
+/* *****************************************************************
+GENERAL
+***************************************************************** */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-body);
+	font-size: var(--body-font-size);
+    font-family: var(--font-text);
+    margin:auto;
+    background-image: url('../gfx/background.svg');
+    background-attachment: inherit;
+    background-repeat: no-repeat;
+    background-size:auto;
+    background-position: center;
+
+}
+
+
+
+a
+{
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    height: auto;
+    -webkit-tap-highlight-color: transparent;
+    
+}
+
+ul {
+   padding-inline-start: 0;
+}
+/* *****************************************************************
+HEADER
+***************************************************************** */
+header {
+     
+    width: 100%;
+    margin:auto;
+    
+    
+} 
+header .logo-container, .nav-links {
+    display:flex;
+       
+}
+
+.logo {
+        margin:auto;   
+}
+
+.logo img{
+    max-width:100%;
+    height:auto;
+    margin:1rem;
+
+    
+}
+
+.burguer {
+    display:none;
+    
+    
+    
+}
+.burguer img{
+   
+    width:5rem;
+   
+}
+
+header nav:before{
+    display: flex;
+    max-width: 80%;
+    height: var(--bf-af-height);
+    margin: auto;
+    content: '';
+    background-color:var(--color-line);
+}
+
+header .nav-links{
+    max-width:60%;
+    margin:1.5rem auto;
+    justify-content: space-around;
+    color: var(--color-link);
+    list-style: none;
+    
+    
+}
+
+header .nav-link:hover{
+    color:var(--color-link-hover);
+
+}
+
+header .nav-link:active{
+    color:var(--color-link-active);
+}
+
+
+
+/* *****************************************************************
+MAIN
+***************************************************************** */
+
+
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+	max-width: var(--block-width);
+	margin: 0 auto;
+    overflow: hidden;
+    justify-content: center;
+    position: relative; 
+    flex-direction: row;       
+    align-items: center;
+}  
+
+.item{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height:40rem;
+    width:25rem;
+   
+}
+
+/*-------INSCRIPTION FORM-----*/
+.inscription{
+    margin:1rem;
+}
+
+.inscription label{
+    color:#fff;
+    padding-right: 10px;
+
+}
+.inscription .field
+{
+    display:flex;
+    justify-content: flex-end;
+    padding: 10px;
+
+}
+.inscription form input{
+    height: auto;
+    border-bottom: 1px solid;
+    border-color: #484848;
+    
+}
+
+input,
+select
+{
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.signup{
+    display:flex;
+    justify-content: center;
+}
+
+.button{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem 6rem;
+    line-height: 4rem;
+    cursor: pointer;
+    border: 0.1rem solid;
+    color: var(--color-button-text);
+    background-color: var(--color-button-bkg);
+    margin:1rem auto ;
+       
+}
+
+.question{
+    display:flex;
+    justify-content: center;
+    color:#fff;
+    background-color: var(--color-content);
+    flex-wrap: wrap;
+    margin:2rem auto;
+    
+}
+.question p{
+
+    margin:1rem;
+    
+    
+}
+/*------HOME--------*/
+.intro {
+
+    background-image:var(--intro-bkg-image) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 69vh;
+    margin: auto;  
+    justify-content: center;
+    color:rgb(14, 14, 14);
+    font-size:var(--intro-font-size);
+    max-width: var(--max-width);
+}
+
+.intro .content{
+
+width: 100%;
+height: 100%;
+}
+
+.intro .content .top{
+    margin:10rem;
+    font-weight: var(--font-weight);
+    font-size:3.5rem;
+      
+}
+
+
+.intro .login{
+    display:flex;
+    justify-content: center;
+    padding: 2.5rem;
+}
+
+.intro .button
+{
+    display: inline-flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 1.2rem 6rem;
+    line-height: 4rem;
+    cursor: pointer;
+    border: 0.1rem solid;
+    color:var(--color-button-text);
+    background-color: var(--color-button-bkg);
+}
+/* --- ARTISTS --- ///  --- RELEASES --- */
+
+.block.size_a .media, .block.size_b .media{
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    background-color: black;
+    background-size: cover;
+    background-position: center
+}
+.block.size_a img, .block.size_b img{
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+
+}
+
+
+
+/* --- RELEASES --- */
+
+.block.size_b .item{
+    margin-bottom:6rem;
+  
+}
+
+
+
+/* --- CONTENT --- */
+.content
+{
+    background-color: var(--color-content);
+    padding: 1.5rem;
+}
+
+.content .top,
+.content .bottom,
+.content .center
+{
+    position: relative;
+    
+}
+
+.content .top,
+.content .bottom
+{
+    text-align: center;
+}
+
+.content .top
+{
+    top: 0;
+}
+
+.content .bottom
+{
+    bottom: 1rem;
+    font-size: 2rem;
+}
+
+
+.content .center
+{
+    
+    width: 100%;
+    text-align: center;
+   
+    
+}
+
+.content .center h2:first-child
+{
+    color: black;
+   
+}
+
+.content .center h2:last-child
+{
+    color: white;
+}
+
+
+.button:hover
+{
+    color: white;
+    border-color: rgb(72, 72, 72);
+    background-color: var(--color-button-hover);
+}
+
+/* --- ARTIST DETAILS --- */
+
+
+/* ---- ALBUM DETAILS --- */
+.feature.album .media{
+    background-image: url(../img/artist/album/blocks.jpg);
+}
+
+.feature.album .content .center
+{
+    font-size: 3rem;
+    
+    top:10%;
+    
+}
+.feature.album .content .bottom{
+    top:30%;
+}
+
+
+
+/* -------- TRACKLIST --- */
+.music_area{
+
+    display:flex;
+    justify-content: center;
+    background-color: #434343;
+    
+    
+}
+
+.tracklist
+{
+    display: flex;
+    flex-direction: column;
+    width: var(--small-block-width);
+   
+    
+}
+
+.track
+{
+    
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color:azure;
+    font-size: var(--video-detail-font-size);
+    align-items: center;
+    margin: 1rem;
+    
+    
+    
+    
+}
+
+
+
+
+/* --- DESCRIPTION --- */
+.description{
+        
+    position: relative;
+    color: white;
+    line-height: 2rem;
+    max-width: var(--text-width) ;
+    margin:0 auto;
+    font-size: var(--description-font-size);
+
+}
+
+.description a
+{
+text-decoration: none;
+
+opacity: .5;
+}
+
+.description a:hover
+{
+opacity: .8;
+}
+
+
+/* ---- LIVE --- */
+
+.block.size_c{
+
+    display:flex;
+      
+}
+.video-js{
+   z-index: 1;
+   
+}
+.video_detail{
+    
+    display:flex;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+    width:var(--small-block-width);
+}
+
+h3{
+    font-size: var(--video-detail-font-size);
+    color:var(--color-text);
+}
+
+
+
+/* ---------------- CONTROL --- */
+.control
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 80% ;
+    margin: auto;
+    text-align: center;
+}
+
+.control a
+{
+    
+    width: 20%;
+    margin: 0 1rem;
+    vertical-align: middle;
+}
+
+.control a:not(:last-child)
+{
+    margin-bottom: 2rem;
+}
+
+/* ------------- BUTTON --- */
+
+.control .button
+{
+    display: inline-flex;
+    justify-content: center; 
+    align-items: center;
+    font-size: 1.6rem;
+    overflow: hidden;
+    height: 4rem;
+    padding: 0 1rem;  
+    text-align: center;
+    border: 0.1rem solid;
+    color: var(--color-line);
+
+}
+
+.button:hover
+{
+    color: white;
+    border-color: #484848;
+}
+
+/* --------------- AREA --- */
+.area
+{
+    position:relative;
+    max-width: var(--max-width);
+    display:flex;
+    background-color: #434343;
+}
+
+.area .columns
+{
+    display:flex;
+    position: relative;
+    width: var(--block-width);
+    margin: auto;
+    justify-content: center;
+}
+
+.area .data:before {
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    content: attr(data-name);
+} 
+
+.area .data
+{
+    width: 50%;
+    margin:0 auto;
+    
+}
+
+.area .event, .area .albums
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    color: white;
+    margin: auto ;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+    
+
+}
+
+.area .event a
+{
+    color: #757575;
+}
+
+.area .event a:hover
+{
+    color:var(--color-link-hover);
+}
+
+
+.area .info{
+   
+   min-width: 50%;
+   margin: 1rem 0;
+   text-align: center;
+}
+
+.area .item{
+    min-width: 50%;
+    min-height: 50%;
+    text-align: center;
+}
+
+.area .media{
+    position: relative;
+    width: 22rem;
+    height: 20rem;
+    background-color: black;
+    background-image: url(../img/artist/album/blocks.jpg);
+    background-size: cover;
+    background-position: center
+}
+   
+
+
+
+
+/* ---- FEATURE --- */
+.feature
+{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;         
+    
+}
+
+
+
+.feature .media{
+    display: flex;
+    position: relative;
+    width: 40rem;
+    height:40rem;
+    background-color: #111;
+    background-size: cover;
+    background-position: center;
+    flex-wrap: wrap;
+ 
+    
+}
+
+.feature img{
+    display: flex;
+    position: relative;
+    width: 40rem;
+    height:40rem;
+    background-size: cover;
+    background-position: center;
+    flex-wrap: wrap;
+}
+
+
+
+.feature .content
+{
+    position: relative;
+    width: 40rem;
+    flex-wrap: wrap;
+}
+
+.feature .content .top,
+.feature .content .bottom,
+.feature .content .center
+{
+  
+    text-align: center;
+}
+.feature .content .center
+{
+    font-size: 3rem;
+    width: 100%;
+    top:30%
+    
+}
+/* *****************************************************************
+FOOTER
+***************************************************************** */
+footer
+{
+    
+    width: 80%;
+    margin:auto;
+}
+
+footer:before
+{
+    position: relative;
+ 
+    display: flex;
+    width: 100%;
+    height: var(--bf-af-height);
+    margin: 5rem auto 1rem;
+    content: '';
+    background-color:var(--color-line);
+}
+
+
+
+
+footer .nav-links{
+    display:none;
+
+    
+    
+}
+
+footer .nav-link:hover{
+    color:var(--color-link-hover);
+
+}
+
+footer .nav-link:active{
+    color:var(--color-link-active);
+}
+
+
+/* *****************************************************************
+MEDIA QUERIES
+***************************************************************** */
+   
+
+@media screen and (max-width: 800px) {
+
+/* *****************************************************************
+GENERAL
+***************************************************************** */
+    body{
+        overflow-x: hidden;
+        position:relative;
+    }
+    
+
+/* *****************************************************************
+HEADER
+***************************************************************** */    
+   
+
+    header{
+        display:flex;
+        height: 15vh;
+        
+    }
+
+    .logo img{
+        max-width: 60%;
+    }
+
+    /*--NAV---*/
+
+    header .nav-links{
+
+        right: 0;
+        height: 80vh;
+        top: 15vh;
+        background-color: rgb(0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:50%;
+        transform: translateX(100%);
+        transition: 0.5s ease-in;
+        margin: auto;
+        position:fixed;
+        z-index: 2;
+    }
+    header .nav-links li{
+        opacity: 0;
+    }
+
+    header .nav-active{
+        transform:translateX(0%);
+        
+    }
+
+    @keyframes navLinkFade {
+        from{
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+        
+    }
+
+    .toggle img{
+        transform: rotate(90deg);
+        transition: transform 0.5s ease-in;
+    }
+    
+    .burguer{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 2rem;
+
+    }
+
+    header nav:before, footer:before{
+        display: none;
+       
+    }
+
+/* *****************************************************************
+MAIN
+***************************************************************** */  
+    .intro .content .top {
+    margin:4rem;
+    }
+
+
+
+/* *****************************************************************
+LOGIN & SIGNUP FORM
+***************************************************************** */ 
+    label{
+        display:none;
+    }
+    input{
+        text-align: center;
+        margin:auto;
+    }
+
+
+/* *****************************************************************
+FOOTER
+***************************************************************** */ 
+
+    footer .nav-links{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        
+        color: var(--color-link);
+        list-style: none;
+    }
+}
