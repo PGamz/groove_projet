@@ -59,7 +59,7 @@ class User extends  UserModel
 
     public function attributes(): array
     {
-        return ['Firstname', 'Lastname', 'Email', 'Nickname', 'Password', 'Created_At','Admin'];
+        return ['Firstname', 'Lastname', 'Email', 'Nickname', 'Password', 'Admin'];
     }
 
     public function labels(): array
@@ -79,7 +79,10 @@ class User extends  UserModel
     {
         return $this->Nickname;
     }
-
+    public function getEmail(): string
+    {
+        return $this->Email;
+    }
 
 
 }

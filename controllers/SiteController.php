@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-use app\core\Application;
 use app\core\Controller;
-use app\core\Request;
 
 /**
  * Class SiteController
@@ -21,15 +19,43 @@ class SiteController extends Controller
         return $this->render('home', $params);
 
     }
-    public function signup()
+
+
+
+    public function artists()
     {
-        return $this->render('signup');
+        $params = [
+
+        ];
+        return $this->render('artists', $params);
+
     }
 
-    public function signupData(Request $request): string
+    public function releases()
     {
+        $params = [
 
-        return 'Handling submitted data';
+        ];
+        return $this->render('releases', $params);
+
+    }
+
+    public function artistDetail ()
+    {
+        $params = [
+
+        ];
+        return $this->render('artist_detail', $params);
+
+    }
+
+    public function albums ()
+    {
+        $params = [
+
+        ];
+        return $this->render('albums', $params);
+
     }
 
 

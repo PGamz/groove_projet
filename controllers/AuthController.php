@@ -12,11 +12,15 @@ use app\core\Response;
 use app\models\LoginForm;
 use app\models\User;
 
+
 class AuthController extends Controller
 {
     public function __construct()
     {
         $this->registerMiddleware(new AuthMiddleware(['profile']));
+        $this->registerMiddleware(new AuthMiddleware(['live']));
+
+
     }
     public function login(Request $request, Response $response)
     {
@@ -24,8 +28,8 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
             if($loginForm->validate() && $loginForm->login()) {
-                $response->redirect('/');
-                return;
+                $response->redirect('/profile');
+                return '';
             }
 
         }
@@ -33,7 +37,10 @@ class AuthController extends Controller
 
         return $this->render('login', [
             'model' => $loginForm
+
         ]);
+
+
     }
 
     public function signup(Request $request)
@@ -66,7 +73,7 @@ class AuthController extends Controller
     public function logout(Request $request, Response $response)
     {
         Application::$app->logout();
-        $response->redirect('/');
+        $response->redirect('/login');
     }
 
     public function profile()
@@ -74,4 +81,15 @@ class AuthController extends Controller
 
         return $this->render('profile');
     }
+
+    public function live()
+    {
+        $this->setLayout('authlive');
+
+        return $this->render('live');
+
+    }
+
+
+
 }

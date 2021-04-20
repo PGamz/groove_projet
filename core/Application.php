@@ -2,7 +2,6 @@
 
 namespace app\core;
 use app\core\db\Database;
-use app\core\db\DbModel;
 
 /**
  * Class Application
@@ -57,6 +56,7 @@ class Application
     {
         return !self::$app->user;
     }
+
 
     public function run()
     {

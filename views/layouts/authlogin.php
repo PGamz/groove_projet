@@ -75,7 +75,7 @@ use app\core\Application;
 
         <div class="inscription">
             {{content}}
-                <div >
+                <div>
                     <a class="question" href="signup">
                         <p>Don't have an account yet?</p>
                         <p>Sign up</p>
