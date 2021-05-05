@@ -17,12 +17,16 @@ abstract class Model
     public const RULE_UNIQUE = 'unique';
 
 
+
+
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
+
             }
+
         }
     }
 
@@ -121,6 +125,7 @@ abstract class Model
     {
         return $this->errors[$attribute][0] ?? false;
     }
+
 
 
 }

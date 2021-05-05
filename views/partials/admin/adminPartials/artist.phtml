@@ -1,0 +1,35 @@
+<?php
+
+
+/** @var $model \app\models\Admin */
+/** @var   $this \app\core\View */
+
+$this -> title = 'Artist List';
+
+?>
+
+<h1> Artists </h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Artist Name</th>
+            <th>Email</th>
+            <th class="text-right" width="20%">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- boucle sur les tags -->
+
+        <tr>
+            <td>['Name']</td>
+            <td>['Email']</td>
+            <td class="text-right">
+                <a <!--class="btn btn-sm btn-outline-secondary" href="<?= $tplVars['WWW_URL']; ?>index.php?controller=Admin\<?= $tplVars['crud'];?>&task=update&id=<?= intval($item['Id']);?>"><i class="fa fa-pencil"></i> -->Change</a>
+            </td>
+        </tr>
+
+        <!-- boucle sur les tags -->
+        </tbody>
+    </table>
+</div>

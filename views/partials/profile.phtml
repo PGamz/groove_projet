@@ -1,0 +1,33 @@
+<?php
+
+use app\core\Application;
+
+$this->title = 'Profile';
+?>
+<section class="block size_d">
+    <div class="inscription">
+
+
+        <h1> profile </h1>
+
+        <div class=""><?=Application::$app->user->getDisplayName();?></div>
+        <div class=""><?=Application::$app->user->getEmail();?></div>
+
+
+
+        <?php if (Application::isArtist()!=1): ?>
+                <a  href="artist_profile"><button class="button"> Artist Profile</button></a>
+        <?php endif; ?>
+
+        <?php if (Application::isAdmin()!=2): ?>
+            <a  href="dashboard "><button class="button"> Admin area</button></a>
+        <?php endif; ?>
+
+    </div>
+
+</section>
+
+
+
+
+

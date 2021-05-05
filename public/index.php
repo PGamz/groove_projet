@@ -1,4 +1,6 @@
 <?php
+
+use app\controllers\AdminController;
 use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\Application;
@@ -37,9 +39,13 @@ $app->router->post('/signup', [AuthController::class, 'signup']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [AuthController::class, 'profile']);
 $app->router->get('/live', [AuthController::class, 'live']);
+$app->router->get('/artist_profile', [AuthController::class, 'createArtist']);
+$app->router->post('/artist_profile', [AuthController::class, 'createArtist']);
 
 
-
+$app->router->get('/dashboard', [AdminController::class, 'admin']);
+$app->router->get('/users', [AdminController::class, 'usersList']);
+$app->router->get('/artist', [AdminController::class, 'artistList']);
 
 
 

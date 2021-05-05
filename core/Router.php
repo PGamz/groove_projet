@@ -41,6 +41,9 @@ class Router
         $this->routes['post'][$path] = $callback;        
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function resolve()
     {
        $path = $this->request->getPath();

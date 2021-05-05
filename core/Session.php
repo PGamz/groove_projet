@@ -20,7 +20,10 @@ class Session
         }
 
         $_SESSION[self::FlASH_KEY] = $flashMessages;
+
+
     }
+
 
     public function setFlash($key, $message)
     {

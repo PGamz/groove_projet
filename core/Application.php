@@ -2,6 +2,9 @@
 
 namespace app\core;
 use app\core\db\Database;
+use app\models\Artist;
+use app\models\User;
+
 
 /**
  * Class Application
@@ -14,7 +17,9 @@ class Application
     public static string $ROOT_DIR;
 
     public string $layout = 'main';
+    public string $adminLayout = 'dashboard';
     public string $userClass;
+
     public Router $router;
     public Request $request;
     public Response $response;
@@ -23,8 +28,11 @@ class Application
     public ?UserModel $user;
     public View $view;
 
+
     public static Application $app;
     public ?Controller $controller = null;
+
+
 
 
     public function __construct($rootPath, array $config)
@@ -35,15 +43,21 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->session = new Session();
+
         $this->router = new Router($this->request, $this->response);
         $this->view = new View();
 
         $this->db = new Database($config['db']);
 
         $primaryValue = $this->session->get('user');
-        if ($primaryValue) {
+        if ($primaryValue)
+
+        {
             $primaryKey = $this->userClass::primaryKey();
+
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+
+
         } else {
             $this->user = null;
         }
@@ -56,6 +70,35 @@ class Application
     {
         return !self::$app->user;
     }
+
+
+
+    public static function isArtist(): bool
+    {
+        if (self::$app->user === null ||
+            self::$app->user->Admin===0 ||
+            self::$app->user->Admin===2) {
+
+        return true;
+    }
+
+        return false;
+    }
+
+    public static function isAdmin(): bool
+    {
+        if (self::$app->user === null ||
+            self::$app->user->Admin===0 ||
+            self::$app->user->Admin===1) {
+
+            return true;
+
+        }
+
+        return false;
+    }
+
+
 
 
     public function run()
@@ -100,6 +143,9 @@ class Application
         $this->user = null;
         $this->session->remove('user');
     }
+
+
+
 }
 
 

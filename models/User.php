@@ -3,19 +3,11 @@
 
 namespace app\models;
 
-
-
-
-
 use app\core\UserModel;
 
 
 class User extends  UserModel
 {
-    const  ADMIN_INACTIVE = 0;
-    const  ADMIN_ACTIVE = 1;
-    const  ADMIN_SUPER = 2;
-    const  ADMIN_DELETED = 3;
 
     public string  $Firstname ='';
     public string  $Lastname ='';
@@ -24,7 +16,8 @@ class User extends  UserModel
     public string  $Password ='';
     public string  $Password2 ='';
     public string  $Created_At='';
-    public int $Admin = self::ADMIN_INACTIVE;
+    public int $Admin;
+
 
 
     public static function tableName(): string
@@ -37,12 +30,17 @@ class User extends  UserModel
         return 'Id';
     }
 
+
     public function save(): bool
     {
-        $this->Admin = self::ADMIN_INACTIVE;
+        $this->Admin = 0;
         $this->Password = password_hash($this->Password, PASSWORD_DEFAULT);
         return parent::save();
+
     }
+
+
+
 
     public function rules(): array
     {
@@ -83,6 +81,7 @@ class User extends  UserModel
     {
         return $this->Email;
     }
+
 
 
 }

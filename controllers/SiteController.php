@@ -13,47 +13,36 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $params = [
-
-        ];
+        $params = [];
         return $this->render('home', $params);
 
     }
 
 
-
     public function artists()
     {
-        $params = [
-
-        ];
+        $params = [];
         return $this->render('artists', $params);
 
     }
 
     public function releases()
     {
-        $params = [
-
-        ];
+        $params = [];
         return $this->render('releases', $params);
 
     }
 
     public function artistDetail ()
     {
-        $params = [
-
-        ];
+        $params = [];
         return $this->render('artist_detail', $params);
 
     }
 
     public function albums ()
     {
-        $params = [
-
-        ];
+        $params = [];
         return $this->render('albums', $params);
 
     }

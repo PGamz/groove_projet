@@ -1,0 +1,19 @@
+<?php
+/** @var $model \app\models\Artist */
+/** @var   $this \app\core\View*/
+
+$this->title = 'Artist profile';
+?>
+
+<?php $form = \app\core\form\Form::begin('', "post") ?>
+<?php echo $form->field($model, 'Name') ?>
+<?php echo $form->field($model, 'Description') ?>
+<?php echo $form->field($model, 'Photo') ->fileField()?>
+
+    <div class="signup">
+        <button class="button" type="submit">Publish Artist</button>
+    </div>
+<?php \app\core\form\Form::end() ?>
+
+
+

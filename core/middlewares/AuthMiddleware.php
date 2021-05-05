@@ -7,6 +7,8 @@ namespace app\core\middlewares;
 use app\core\Application;
 use app\core\exception\ForbiddenException;
 
+
+
 class AuthMiddleware extends BaseMiddleware
 {
     public array $actions =[];
@@ -30,5 +32,9 @@ class AuthMiddleware extends BaseMiddleware
                 throw new ForbiddenException();
             }
         }
+
     }
+
+
+
 }
