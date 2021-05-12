@@ -6,15 +6,9 @@ namespace app\core\form;
 
 use app\core\Model;
 
-class Field
+class TextArea
 {
-    public const TYPE_TEXT = 'text';
-    public const TYPE_PASSWORD = 'password';
-    public const TYPE_NUMBER= 'number';
-    public const TYPE_FILE= 'file';
-
-
-
+    public const TYPE_TEXT = 'textarea';
 
     public string $type;
     public Model $model;
@@ -35,10 +29,9 @@ class Field
     public function __toString()
     {
         return sprintf('
-            <div class="field">
+            <div class="field" xmlns="http://www.w3.org/1999/html">
                  <label>%s</label>
-                 <input type="%s"  name="%s" value="%s" class="%s"> 
-                     
+                 <textarea class="%s"  name="%s" value="%s" class="%s"></textarea>     
                  <div class="invalid">
                         %s   
                  </div>
@@ -54,17 +47,6 @@ class Field
         );
     }
 
-    public function passwordField(): Field
-    {
-        $this->type = self::TYPE_PASSWORD;
-        return $this;
-    }
-
-    public function fileField(): Field
-    {
-        $this->type = self::TYPE_FILE;
-        return $this;
-    }
 
 
 

@@ -1,22 +1,32 @@
 <?php
 
+/** @var $artist\app\models\Artist */
+
 use app\core\Application;
+
 
 $this->title = 'Profile';
 ?>
+
 <section class="block size_d">
     <div class="inscription">
 
 
         <h1> profile </h1>
 
-        <div class=""><?=Application::$app->user->getDisplayName();?></div>
-        <div class=""><?=Application::$app->user->getEmail();?></div>
+        <div class=""><?=Application::$app->user->Firstname?></div>
+        <div class=""><?=Application::$app->user->Lastname?></div>
+        <div class=""><?=Application::$app->user->Nickname?></div>
+        <div class=""><?=Application::$app->user->Email?></div>
+        <div class=""><?=Application::$app->user->Id?></div>
 
 
 
         <?php if (Application::isArtist()!=1): ?>
-                <a  href="artist_profile"><button class="button"> Artist Profile</button></a>
+            <a href="artist_profile?id=<?=($artist['a_Id'])?>"><button class="button">artist profile</button></a>
+
+
+            <a  href="create_artist"><button class="button"> Create Artist</button></a>
         <?php endif; ?>
 
         <?php if (Application::isAdmin()!=2): ?>

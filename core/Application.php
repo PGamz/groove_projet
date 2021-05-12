@@ -2,8 +2,7 @@
 
 namespace app\core;
 use app\core\db\Database;
-use app\models\Artist;
-use app\models\User;
+
 
 
 /**
@@ -20,6 +19,7 @@ class Application
     public string $adminLayout = 'dashboard';
     public string $userClass;
 
+
     public Router $router;
     public Request $request;
     public Response $response;
@@ -27,6 +27,7 @@ class Application
     public Database $db;
     public ?UserModel $user;
     public View $view;
+
 
 
     public static Application $app;
@@ -38,6 +39,7 @@ class Application
     public function __construct($rootPath, array $config)
     {
         $this->userClass = $config['userClass'];
+
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -60,6 +62,7 @@ class Application
 
         } else {
             $this->user = null;
+
         }
 
 
@@ -76,8 +79,8 @@ class Application
     public static function isArtist(): bool
     {
         if (self::$app->user === null ||
-            self::$app->user->Admin===0 ||
-            self::$app->user->Admin===2) {
+            self::$app->user->Admin===1 ||
+            self::$app->user->Admin===3) {
 
         return true;
     }
@@ -88,8 +91,8 @@ class Application
     public static function isAdmin(): bool
     {
         if (self::$app->user === null ||
-            self::$app->user->Admin===0 ||
-            self::$app->user->Admin===1) {
+            self::$app->user->Admin===1 ||
+            self::$app->user->Admin===2) {
 
             return true;
 
@@ -135,6 +138,7 @@ class Application
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->$primaryKey;
         $this->session->set('user', $primaryValue);
+
         return true;
     }
 

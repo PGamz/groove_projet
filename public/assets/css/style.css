@@ -597,10 +597,9 @@ h3{
 
 .area .media{
     position: relative;
-    width: 22rem;
+    width: 20rem;
     height: 20rem;
     background-color: black;
-    background-image: url(../img/artist/album/blocks.jpg);
     background-size: cover;
     background-position: center
 }

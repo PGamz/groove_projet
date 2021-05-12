@@ -15,11 +15,11 @@ class Artist extends ArtistModel
 
 {
 
-
-    public string $Name="";
-    public string $Photo="";
-    public string $Description="";
+    public string $Name='';
+    public string $Photo='';
+    public string $Description='';
     public int $User_Id;
+
 
 
 
@@ -37,20 +37,14 @@ class Artist extends ArtistModel
 
 
 
-
     public function save() :bool
     {
-        $this -> User_Id = Application::$app->session->get('user');
+
+        $this->User_Id=Application::$app->session->get('user');
         return parent::save();
 
     }
 
-
-
-    public function attributes():array
-    {
-        return  ['Name','Photo','Description','User_Id'];
-    }
 
     public function rules(): array
     {
@@ -61,10 +55,19 @@ class Artist extends ArtistModel
         ];
     }
 
+    public function attributes():array
+    {
+
+        return  ['Id','Name','Photo','Description','User_Id'];
+
+    }
+
     public function getArtistName(): string
     {
         return $this->Name;
+
     }
+
     public function getDescription(): string
     {
         return $this->Description;
@@ -74,6 +77,9 @@ class Artist extends ArtistModel
     {
         return $this->Photo;
     }
+
+
+
 
 
 

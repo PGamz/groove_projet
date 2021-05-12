@@ -36,16 +36,14 @@ abstract class DbModel extends Model
     }
 
 
-
     public static function findAll()
     {
 
         $tableName = static::tableName();
         $statement = self::prepare("SELECT * FROM $tableName");
 
-
         $statement->execute();
-        return $statement->fetchAll(static::class);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 
@@ -64,8 +62,35 @@ abstract class DbModel extends Model
             return $statement->fetchObject(static::class);
     }
 
+
+    public static function findUser()
+    {
+
+        if (isset($_GET['id']) && !empty($_GET['id'])) {
+
+            $id = strip_tags($_GET['id']);
+
+            $sql = 'SELECT * FROM user WHERE Id = :id';
+
+            $statement = self::prepare($sql);
+
+            $statement-> bindValue(':id', $id, );
+
+            $statement -> execute();
+
+            return $statement -> fetch();
+        }
+
+    }
+
+
+
+
+
     public static function prepare($sql)
     {
         return Application::$app->db->pdo->prepare($sql);
     }
+
+
 }

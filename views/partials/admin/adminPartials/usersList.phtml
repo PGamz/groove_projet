@@ -1,0 +1,64 @@
+<?php
+
+/** @var  $users \app\controllers\AdminController */
+/** @var  $user \app\controllers\AdminController */
+/** @var  $this \app\core\View*/
+
+
+
+$this->title = 'User';
+
+?>
+
+
+<h1> Users List</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Nick Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <?php foreach($users as $item):?>
+
+
+
+            <tr>
+
+                <td><?=($item['Firstname']); ?></td>
+                <td><?=($item['Lastname']); ?></td>
+                <td><?=($item['Nickname']); ?></td>
+                <td><?=($item['Email']); ?></td>
+                <td><?php
+                        if (intval($item['Admin']) ==1):
+                            echo 'Visitor';
+                        elseif (intval($item['Admin']) ==2):
+                            echo 'Artist';
+                        elseif (intval($item['Admin']) ==3):
+                            echo 'Admin';
+                        endif;
+                        ?>
+                </td>
+                <td class="text-right">
+
+                    <a href="edit_user?id=<?= $item ['Id'] ?>">Update </a>
+                    <a href="delete_user?id=<?= $item ['Id'] ?> ">Delete</a>
+
+
+                </td>
+
+            </tr>
+        <?php endforeach; ?>
+
+
+        </tbody>
+    </table>
+</div>

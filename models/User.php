@@ -9,6 +9,7 @@ use app\core\UserModel;
 class User extends  UserModel
 {
 
+
     public string  $Firstname ='';
     public string  $Lastname ='';
     public string  $Email ='';
@@ -17,6 +18,7 @@ class User extends  UserModel
     public string  $Password2 ='';
     public string  $Created_At='';
     public int $Admin;
+    public int $Id;
 
 
 
@@ -33,7 +35,7 @@ class User extends  UserModel
 
     public function save(): bool
     {
-        $this->Admin = 0;
+        $this->Admin = 1;
         $this->Password = password_hash($this->Password, PASSWORD_DEFAULT);
         return parent::save();
 
@@ -83,5 +85,4 @@ class User extends  UserModel
     }
 
 
-
-}
+ }

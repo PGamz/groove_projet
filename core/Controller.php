@@ -33,15 +33,19 @@ class Controller
         return Application::$app->view->renderView($view, $params);
     }
 
+
     public function adminRender($view, $params = [])
     {
+
         return Application::$app->view->renderAdminView($view, $params);
+
 
     }
 
     public function registerMiddleware(BaseMiddleware $middleware)
     {
         $this->middlewares[] = $middleware;
+
     }
 
     /**
@@ -49,6 +53,8 @@ class Controller
      */
     public function getMiddlewares(): array
     {
+
         return $this->middlewares;
+
     }
 }

@@ -20,7 +20,6 @@ class View
 
     }
 
-
     protected function renderAdminOnlyView($view, $params)
     {
         foreach ($params as $key => $value) {
@@ -48,8 +47,8 @@ class View
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
 
-
     }
+
 
     protected function layoutContent()
     {

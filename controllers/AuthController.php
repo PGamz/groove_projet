@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\core\Application;
+use app\core\ArtistModel;
 use app\core\Controller;
 use app\core\exception\AdminException;
 use app\core\exception\ArtistException;
@@ -13,6 +14,7 @@ use app\core\middlewares\ArtistMiddleware;
 use app\core\middlewares\AuthMiddleware;
 use app\core\Request;
 use app\core\Response;
+use app\core\Session;
 use app\models\Artist;
 use app\models\LoginForm;
 use app\models\User;
@@ -31,7 +33,6 @@ class AuthController extends Controller
         $this->registerMiddleware(new ArtistMiddleware(['artist_profile']));
 
 
-
     }
 
 
@@ -42,11 +43,14 @@ class AuthController extends Controller
         if ($request->isPost()) {
             $loginForm->loadData($request->getBody());
             if($loginForm->validate() && $loginForm->login()) {
+
+
                 $response->redirect('/profile');
                 return '';
             }
 
         }
+
         $this->setLayout('authlogin');
 
         return $this->render('login', [
@@ -90,16 +94,12 @@ class AuthController extends Controller
     }
 
 
-
-
-
-
-
-
     public function profile()
     {
 
-        return $this->render('profile');
+        $artist = ArtistModel::getArtistProfile(Session::getId());
+
+        return $this->render('profile',['artist' => $artist]);
     }
 
 
@@ -130,7 +130,7 @@ class AuthController extends Controller
                 Application::$app->response->redirect('/artist_profile');
             }
             $this->setLayout('artistlayout');
-            return $this->render('artist_profile', [
+            return $this->render('create_artist', [
                 'model' => $artist
             ]) ;
         }
@@ -141,9 +141,27 @@ class AuthController extends Controller
 
             }
             $this->setLayout('artistlayout');
-            return $this->render('artist_profile', [
+            return $this->render('create_artist', [
                 'model' => $artist
             ]) ;
+        }
+
+
+    /**
+     * @throws ArtistException
+     */
+    public function artistProfile()
+        {
+
+            if(Application::isArtist()){
+                throw new ArtistException();
+            }
+
+            $artist = ArtistModel::getArtistProfile(Session::getId());
+
+
+            $this->setLayout('artistlayout');
+            return $this->render('artist_profile', ['artist' => $artist] );
         }
 
 

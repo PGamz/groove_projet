@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\core\Application;
+use app\core\ArtistModel;
 use app\core\Controller;
 
 /**
@@ -19,12 +21,16 @@ class SiteController extends Controller
     }
 
 
-    public function artists()
+
+        public function artists()
     {
-        $params = [];
-        return $this->render('artists', $params);
+        $artists = ArtistModel::getArtists();
+
+        return $this->render('artists',['artists' => $artists] );
 
     }
+
+
 
     public function releases()
     {
@@ -35,10 +41,14 @@ class SiteController extends Controller
 
     public function artistDetail ()
     {
-        $params = [];
-        return $this->render('artist_detail', $params);
+        $artist = ArtistModel::getArtistDetail($_GET['id']);
+
+        return $this->render('artist_detail',['artist' => $artist]) ;
 
     }
+
+
+
 
     public function albums ()
     {

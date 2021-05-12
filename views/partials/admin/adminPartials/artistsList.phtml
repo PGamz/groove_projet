@@ -1,0 +1,43 @@
+<?php
+
+
+
+/** @var  $artists \app\controllers\AdminController */
+/** @var   $this \app\core\View */
+
+$this->title = 'Artists List';
+
+?>
+
+<h1> Artists </h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>User Name</th>
+            <th>Artist Name</th>
+            <th>Email</th>
+            <th class="text-right" width="20%">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php foreach($artists as $item):?>
+
+            <tr>
+                <td><?=$item['Firstname']?></td>
+                <td><?=$item['Name'] ?></td>
+                <td><?=$item['Email'] ?></td>
+                <td class="text-right">
+
+                    <div class="actions">
+                        <a href="artist_detail?id=<?=$item['Id']?>">View</a>
+                        <a href="delete_artist?id=<?=$item['Id']?>">Delete</a></div>
+            </tr>
+        <?php endforeach; ?>
+
+
+
+        </tbody>
+    </table>
+</div>

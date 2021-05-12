@@ -38,14 +38,23 @@ $app->router->get('/signup', [AuthController::class, 'signup']);
 $app->router->post('/signup', [AuthController::class, 'signup']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [AuthController::class, 'profile']);
+$app->router->post('/profile', [AuthController::class, 'profile']);
 $app->router->get('/live', [AuthController::class, 'live']);
-$app->router->get('/artist_profile', [AuthController::class, 'createArtist']);
-$app->router->post('/artist_profile', [AuthController::class, 'createArtist']);
+$app->router->get('/create_artist', [AuthController::class, 'createArtist']);
+$app->router->post('/create_artist', [AuthController::class, 'createArtist']);
+$app->router->get('/artist_profile', [AuthController::class, 'artistProfile']);
 
 
 $app->router->get('/dashboard', [AdminController::class, 'admin']);
-$app->router->get('/users', [AdminController::class, 'usersList']);
-$app->router->get('/artist', [AdminController::class, 'artistList']);
+$app->router->get('/usersList', [AdminController::class, 'usersList']);
+
+$app->router->get('/edit_user', [AdminController::class, 'editUser']);
+$app->router->post('/edit_user', [AdminController::class, 'editUser']);
+$app->router->get('/delete_user', [AdminController::class, 'deleteUser']);
+
+
+$app->router->get('/artistsList', [AdminController::class, 'artistList']);
+$app->router->get('/delete_artist', [AdminController::class, 'deleteArtist']);
 
 
 

@@ -23,6 +23,11 @@ class Form
     {
         return new Field($model, $attribute);
     }
+
+    public function textArea(Model $model, $attribute): TextArea
+    {
+        return new Textarea($model, $attribute);
+    }
 }
 
     

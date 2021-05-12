@@ -1,15 +1,19 @@
 <?php
 
+/** @var $artist\app\models\Artist */
 /** @var  $this \app\core\View */
-$this->title = 'artist id';
-?>
 
+
+
+
+$this->title = 'artist ';
+?>
 
 <section class="block size_c" >
 
         <div class="feature artist">
             <!-- media -->
-            <div class="media"> <img  src="./assets/img/artist/gamz2.png" alt=" artist photo"> </div>
+            <div class="media"> <img  src="<?= $artist['Photo']?>" alt=" artist photo"> </div>
 
             <!-- content -->
             <div class="content">
@@ -18,7 +22,9 @@ $this->title = 'artist id';
                 <div class="center">
 
                     <!-- line 1 -->
-                    <h2></h2>
+                    <h2><?= $artist['a_Name']?></h2>
+
+
 
 
                 </div>
@@ -30,15 +36,85 @@ $this->title = 'artist id';
 
         <!-- description -->
         <div class="description">
-            <p></p>
+            <p><?= $artist['Description']?></p>
         </div>
-
+        <?php
+        if (!empty($artist['s_Name']) && (!empty($artist['Url']))){
+        ?>
         <!-- control -->
         <div class="control">
 
-            <a class="button" href="" target="_blank"> Website</a>
-            <a class="button" href="https://facebook.com/gamz233" target="_blank">Facebook</a>
-            <a class="button" href="https://soundcloud.com/gamz233" target="_blank">Soundcloud</a>
-            <a class="button" href="" target="_blank">Resident Advisor</a>
-        </div>
+            <a class="button" href="https://www.<?= $artist['Url']?>" target="_blank"><?= $artist['s_Name']?></a>
 
+        </div>
+        <?php
+        }
+        ?>
+<!-- area -->
+<section class="area">
+
+    <?php
+    if (!empty($artist['e_Name']) && (!empty($artist['e_Date']))){
+    ?>
+    <div class="columns">
+        <!-- column -->
+        <div class="data" data-name="Latest Dates">
+            <!-- event -->
+            <div class="event">
+                <!-- item -->
+                <div class="info">
+                    <div class="venue"><?=$artist['e_Name']?></div>
+                    <div class="date"><?=$artist['e_Date']?></div>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+
+            <?php
+            if (!empty($artist['alb_Id']) && (!empty($artist['Cover'])) && (!empty($artist['alb_Title'])) && (!empty($artist['ReleaseDate'])) ) {
+            ?>
+        <!-- column -->
+        <div class="data" data-name="Related Music">
+
+            <!-- block -->
+            <div class="albums">
+
+                <!-- item -->
+                <div class="item">
+
+
+                    <a  href="albums?id=<?=$artist['alb_Id']?>">
+
+
+                        <!-- media -->
+                        <div class="media">
+                            <img  src="<?= $artist['Cover']?>" alt="album cover">
+                        </div>
+
+                        <!-- content -->
+                        <div class="content">
+
+                            <!-- center -->
+                            <div class="center">
+
+                                <!-- line 1 -->
+                                <h2><?= $artist['alb_Title']?></h2>
+
+                            </div>
+
+                            <!-- bottom -->
+                            <div class="bottom"><?= $artist['ReleaseDate']?></div>
+
+                        </div>
+
+                    </a>
+                </div>
+                <?php
+                    }
+                ?>
+            </div>
+
+        </div>
+    </div>
+</section>
