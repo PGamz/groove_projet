@@ -1,0 +1,52 @@
+<?php
+
+/** @var $user\app\models\Admin */
+
+$this->title = 'Edit User'; ?>
+
+<section class="admin_content">
+    <h1>Edit User</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label for="firstname">First name</label>
+            <input type="text" id="firstname" name="Firstname" value="<?=$user['Firstname']?>" placeholder="First name" />
+        </div>
+        <div>
+            <label for="lastname">Last name</label>
+            <input type="text" id="lastname" name="Lastname" value="<?= $user['Lastname']?>" placeholder="Last name" />
+
+            <div>
+                <label for="nickname">Nickname</label>
+                <input type="text" id="nickname" name="Nickname" value="<?= $user['Nickname']?>" placeholder="Nickname" />
+            </div>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" value="<?= $user['Email']?>" placeholder="Email" />
+        </div>
+        <div>
+            <label for="select">Role</label>
+            <select id="select" name="Admin">
+                <option value="<?= $user['Admin']?>" selected>
+                    <?php
+                    if (intval($user['Admin']) ==1):
+                        echo 'Visitor';
+                    elseif (intval($user['Admin']) ==2):
+                        echo 'Artist';
+                    elseif (intval($user['Admin']) ==3):
+                        echo 'Admin';
+                    endif;
+                    ?>
+                </option>
+
+                <option id="select" name="Admin" value="1">Visitor</option>
+                <option id="select" name="Admin" value="2">Artist</option>
+                <option id="select" name="Admin" value="3">Admin</option>
+            </select>
+        </div>
+
+        <input id="showVal" type="hidden" value="<?=$user['Id'];?>" name="id" />
+
+        <button class="button" type="submit">Update</button>
+    </form>
+</section>

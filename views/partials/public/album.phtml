@@ -1,0 +1,89 @@
+<?php
+/** @var $album\app\controllers\SiteController */
+/** @var $tracks \app\controllers\SiteController */
+
+/** @var  $this \app\core\View */
+$this->title = 'Albums'; use app\core\Application; ?>
+
+<!-- feature -->
+<section class="block size_c">
+    <div class="feature album">
+        <!-- media -->
+        <div class="media">
+            <?php
+            if (!empty($album['Cover'])) {
+                ?>
+                <img src="assets/uploads/albums_cover/<?=$album['Cover']?>" alt="album cover" />
+                <?php
+            }
+            ?>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <!-- center -->
+            <div class="center">
+                <!-- line 1 -->
+                <h2><?= $album['a_Name']?></h2>
+
+                <!-- line 2 -->
+                <h2><?= $album['alb_Title']?></h2>
+            </div>
+
+            <!-- bottom -->
+            <div class="bottom"><?=$album['Genre']?></div>
+            <div class="bottom"><?=$album['ReleaseDate']?></div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- copy -->
+
+
+<section class="music_area">
+    <?php if (Application::isGuest()): ?>
+    <div class="listen">
+        <!-- login -->
+        <a href="login">Login to listen the album</a>
+    </div>
+<?php else: ?>
+    <div class="audio_player">
+        <audio id="audio">
+            <source src="" id="audioSource" type="audio/mpeg" />
+        </audio>
+        <div class="player">
+            <span class="audio-title" id="audioTitle">Title</span>
+            <div class="player-middle-row">
+                <div class="player-middle-left">
+                    <span id="audioPlayPause"><i class="fa fa-play"></i></span>
+                    <span id="audioStop"><i class="fa fa-stop"></i></span>
+                </div>
+                <div class="player-middle-right">
+                    <span id="duration">0:00</span>
+                    <span id="durationUpdate">0:00</span>
+                </div>
+            </div>
+            <div class="volume-control">
+                <span id="volumeDown"> <i class="fas fa-volume-down"></i></span>
+                <input class="slider" id="volume-control" type="range" min="0" max="100" value="50" />
+                <span id="volumeUp"> <i class="fas fa-volume-up"></i></span>
+            </div>
+        </div>
+        <div class="audioPlaylistWrap">
+            <?php foreach ($tracks as $track):?>
+                <div class="playlist-item">
+                    <div class="audio-list">
+                        <a id="audioFile" class="aTrigger" data-active="" data-title="<?=$track['track_Title']?>" data-audio="./assets/uploads/music/<?=$track['Audio']?>"><i class="fa fa-play"></i></a>
+                        <div class="audio-list-in">Audio Name</div>
+                    </div>
+                    <a class="downloadTrack" href="assets/uploads/music/<?=$track['Audio']?>" download="<?=$track['track_Title']?>"><i class="fas fa-download"></i></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <?php endif; ?>
+</section>
+
+<script src="assets/js/audioPlayer.js"></script>

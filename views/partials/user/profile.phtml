@@ -1,0 +1,34 @@
+<?php
+/** @var $item\app\models\user */
+/** @var   $this \app\core\View */
+use app\core\Application;
+
+$this->title = 'User Profile'; ?>
+<section class="block size_d">
+    <div class="inscription">
+        <div class="alert"><?= Application::$app->session->getFlash('success')?></div>
+        <h1>User profile</h1>
+        <form method="post">
+            <div>
+                <label for="firstname">First name</label>
+                <input type="text" id="firstname" name="Firstname" value="<?=$item['Firstname']?>" />
+            </div>
+            <div>
+                <label for="lastname">Last name</label>
+                <input type="text" id="lastname" name="Lastname" value="<?=$item['Lastname']?>" />
+            </div>
+            <div>
+                <label for="nickname">Nick name</label>
+                <input type="text" id="nickname" name="Nickname" value="<?=$item['Nickname']?>" />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" value="<?=$item['Email']?>" />
+            </div>
+            <div class="signup">
+                <input type="hidden" value="<?=$item['Id']?>" name="id" />
+                <button class="button" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,109 @@
+<?php
+
+/** @var $artist\app\models\Artist */
+/** @var $albums\app\controllers\sitecontroller */
+/** @var $links\app\controllers\sitecontroller */
+/** @var  $this \app\core\View */
+/** @var $events\app\controllers\siteController */
+
+
+
+
+$this->title = 'artist '; ?>
+
+<section class="block size_c">
+    <div class="feature artist">
+        <!-- media -->
+        <div class="media">
+            <?php  if (!empty ($artist['Photo'])){ ?>
+                <img src="assets/uploads/artists_photo/<?=$artist['Photo']?>" alt="artist photo" />
+
+            <?php } ?>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <!-- center -->
+            <div class="center">
+                <!-- line 1 -->
+                <h2><?= $artist['a_Name']?></h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- description -->
+<div class="description">
+    <p><?= $artist['Description']?></p>
+</div>
+
+<!-- control -->
+<div class="control">
+    <?php foreach ($links as $link):?>
+
+            <a class="button" href="https://www.<?= $link['Url']?>" target="_blank"><?= $link['s_Name']?></a>
+
+    <?php endforeach; ?>
+</div>
+
+<!-- area -->
+<section class="area">
+    <div class="columns">
+        <div class="data" data-name="Shows">
+            <?php foreach ($events as $event):?>
+                <!-- event -->
+                <div class="event">
+                    <!-- item -->
+                    <div class="info">
+                        <div class="venue"><?=($event['eve_Name']); ?></div>
+                        <div class="date"><?=($event['eve_Date']); ?></div>
+                        <div class="date"><?=($event['eve_Time']); ?></div>
+                        <div class="date"><?=($event['Location']); ?></div>
+
+                        <div class="link">
+                            <a href="<?=($event['eve_Url']); ?>" target="_blank"> Tickets </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="data" data-name="Related Music">
+
+
+            <!-- block -->
+            <div class="albums">
+                <?php foreach ($albums as $album):?>
+                <!-- item -->
+                <div class="item">
+                    <a href="album?id=<?=$album['alb_Id']?>">
+                        <!-- media -->
+                        <div class="media">
+                            <?php
+                            if (!empty($album['Cover'])) {
+                                ?>
+                                <img src="assets/uploads/albums_cover/<?= $album['Cover']?>" alt="album cover" />
+                                <?php
+                            }
+                            ?>
+                        </div>
+
+                        <!-- content -->
+                        <div class="content">
+                            <!-- center -->
+                            <div class="center">
+                                <!-- line 1 -->
+                                <h4><?= $album['alb_Title']?></h4>
+                            </div>
+
+                            <!-- bottom -->
+                            <div class="bottom"><?= $album['ReleaseDate']?></div>
+                        </div>
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+
+        </div>
+    </div>
+</section>

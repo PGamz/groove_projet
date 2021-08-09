@@ -1,0 +1,182 @@
+<?php
+/** @var $artist\app\controllers\Authcontroller */
+/** @var $tracks\app\controllers\ArtistController */
+/** @var $cover\app\controllers\ArtistController */
+/** @var $detail\app\controllers\ArtistController */
+
+
+use app\core\Application;
+
+$this->title = 'Album'; ?>
+<div class="artist_main">
+       <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    
+    <section class="artist_content">
+        <div class="admin_view">
+            <div class="access">
+                <h2>Album detail</h2>
+                <a href="edit_album?id=<?=($detail['alb_Id'])?>">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+                <a href="album?id=<?=($detail['alb_Id'])?>" target="_blank">
+                    <i class="far fa-eye"></i>
+                </a>
+                <a id="openModal">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+            <div id="del" class="modal">
+                    <div class="modal-content">
+                    <div class="container">
+                        <h1>Delete Album</h1>
+                        <p>This will delete all content related to this Album</p>
+                        <p>Are you sure you want to delete this Album?</p>
+
+                        <div class="clearfix">
+                            <a onclick="document.getElementById('del')" class="cancelbtn" href="">Cancel</a>
+                            <a class="deletebtn" href="delete_album?id=<?=($detail['alb_Id'])?>">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert">
+            <?= Application::$app->session->getFlash('success')?>
+            <?= Application::$app->session->getFlash('error')?>
+        </div>
+        <section class="block size_c">
+            <div class="feature album">
+                <!-- media -->
+                <div class="media">
+                    <?php
+                    if (!empty($detail['Cover'])) {
+                        ?>
+                        <img src="assets/uploads/albums_cover/<?=$detail['Cover']?>" alt="album cover" />
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                <!-- content -->
+                <div class="content">
+                    <!-- center -->
+                    <div class="center">
+                        <!-- line 1 -->
+                        <h2><?= $detail['a_Name']?></h2>
+
+                        <!-- line 2 -->
+                        <h2><?= $detail['alb_Title']?></h2>
+                    </div>
+
+                    <!-- bottom -->
+                    <div class="bottom"><?=$detail['Genre']?></div>
+                    <div class="bottom"><?=$detail['ReleaseDate']?></div>
+                    
+                </div>
+            </div>
+            
+            <form method="post" enctype="multipart/form-data">
+                <p>Max file size 2Mb !!</p>
+                <label for="Cover">Cover</label>
+                <input type="file" id="Cover" name="file" value="<?=$detail['Cover']?>" /> 
+                <button type="submit" name="submit">Upload</button>
+                
+            </form>
+        </section>
+
+        <section class="music_area">
+            <div class="audio_player">
+                <audio id="audio">
+                    <source src="" id="audioSource" type="audio/mpeg" />
+                </audio>
+
+                <div class="player">
+                    <span class="audio-title" id="audioTitle">Title</span>
+
+                    <div class="player-middle-row">
+                        <div class="player-middle-left">
+                            <span id="audioPlayPause"><i class="fa fa-play"></i></span>
+                            <span id="audioStop"><i class="fa fa-stop"></i></span>
+                        </div>
+                        <div class="player-middle-right">
+                            <span id="duration">0:00</span>
+                            <span id="durationUpdate">0:00</span>
+                        </div>
+                    </div>
+                    <div class="volume-control">
+                        <span id="volumeDown"> <i class="fas fa-volume-down"></i></span>
+                        <input class="slider" id="volume-control" type="range" min="0" max="100" value="50" />
+                        <span id="volumeUp"> <i class="fas fa-volume-up"></i></span>
+                    </div>
+                </div>
+                <div class="audioPlaylistWrap">
+                    <?php foreach ($tracks as $track):?>
+                        <div class="playlist-item">
+                            <div class="audio-list">
+                                <a class="aTrigger" data-active="" data-title="<?=$track['track_Title']?>" data-audio="assets/uploads/music/<?=$track['Audio']?>"><i class="fa fa-play"></i></a>
+                                <div class="audio-list-in">Audio Name</div>
+                            </div>
+                            <a href="delete_track?id=<?=$track['track_Id']?>" id="deleteTrack" class="delete" data-confirm="Are you sure to delete this Track?" ><i class="fas fa-trash"></i></a>
+
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="addTrack">
+                    <button>
+                        <a href="add_track?id=<?=$detail['alb_Id']?>">Add Track <i class="fas fa-plus"></i></a>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <script src="assets/js/audioPlayer.js"></script>
+    </section>
+</div>

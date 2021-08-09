@@ -1,0 +1,71 @@
+<?php
+/**
+ * @var $exception \Exception
+ */
+?>
+<section class="exceptionMessage">
+<h3><?php echo $exception->getCode()?> - <?php echo $exception->getMessage() ?></h3>
+
+<div>
+    <p>Don't worry, play some music!!</p>
+</div>
+
+<div class="loopbox">
+<div class="keys">
+    <div id="key" data-key="82" class="key">
+    <kbd>R</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="84" class="key">
+    <kbd>T</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="89" class="key">
+    <kbd>Y</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="85" class="key">
+    <kbd>U</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="73" class="key">
+    <kbd>I</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="70" class="key">
+    <kbd>F</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="71" class="key">
+    <kbd>G</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="72" class="key">
+    <kbd>H</kbd>
+      <span class="sample"></span>
+    </div>
+    <div data-key="74" class="key">
+    <kbd>J</kbd>
+      <span class="sample"></span>
+    </div>
+  </div>
+
+  <div class="container">
+      <audio data-key="82" src="assets/audioLoops/clap.wav"></audio>
+      <audio data-key="84" src="assets/audioLoops/hihat.wav"></audio>
+      <audio data-key="89" src="assets/audioLoops/kick.wav"></audio>
+      <audio data-key="85" src="assets/audioLoops/openhat.wav"></audio>
+    <audio data-key="73" src="assets/audioLoops/tom.wav"></audio>
+    <audio data-key="70" src="assets/audioLoops/ride.wav"></audio>
+    <audio data-key="71" src="assets/audioLoops/snare.wav"></audio>
+    <audio data-key="72" src="assets/audioLoops/VMH1 Minimal Loops 002.wav"></audio>
+    <audio data-key="74" src="assets/audioLoops/Synth2.wav"></audio>
+  </div>
+
+  </div>
+  
+  </section>
+
+  
+<script src="assets/js/loopbox.js"></script>
+

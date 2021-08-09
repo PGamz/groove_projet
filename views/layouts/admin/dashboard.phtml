@@ -1,0 +1,75 @@
+<?php
+
+/** @var $model \app\models\Admin */
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/gfx/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="assets/gfx/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://kit.fontawesome.com/e1833879d6.js" crossorigin="anonymous"></script>
+    <title><?php use app\core\Application; echo $this->title ?></title>
+</head>
+
+<body class="admin_body">
+<header>
+    <!-- logo -->
+    <div class="dashboardHeader">
+        <h1 class="title"><a href="dashboard">Dashboard</a></h1>
+        <div class="welcome">
+            <a href="profile">
+                <?=Application::$app->user->getDisplayName()?>
+                <i class="far fa-user-circle"></i>
+            </a>
+            <a href="logout"><i class="fas fa-power-off"></i> </a>
+        </div>
+    </div>
+
+    <!--toggle-->
+    
+</header>
+
+<!-- main -->
+<main class="">
+    <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+       
+        <!-- nav -->
+        <nav>
+            <ul id="aside-nav" class="aside-links">
+                <li class="aside-link">
+                    <!-- home -->
+                    <a href="usersList">Users</a>
+                </li>
+
+                <li class="aside-link">
+                    <!-- home -->
+                    <a href="artistsList">Artists</a>
+                </li>
+
+                <li class="aside-link">
+                    <!-- home -->
+                    <a href="./">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    {{content}}
+</main>
+
+<!-- script -->
+<script src="assets/js/artistmenu.js"></script>
+<script src="assets/js/data-confirm.js"></script>
+</body>
+</html>

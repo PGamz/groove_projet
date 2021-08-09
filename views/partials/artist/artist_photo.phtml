@@ -1,0 +1,72 @@
+<?php
+
+/** @var $artist\app\controllers\Artistcontroller */
+
+/** @var $img\app\controllers\Artistcontroller */
+
+
+
+$this->title = 'Add Photo'; ?>
+<div class="artist_main">
+       <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <section class="artist_content">
+        <div class="admin_view">
+            <h2>Add Artist photo</h2>
+            <p>Max file size 2Mb !!</p>
+            <form method="post" enctype="multipart/form-data">
+                <label for="Photo">Photo</label>
+                <input type="file" id="Photo" name="file" value="<?=$img['Photo']?>" />
+                <button type="submit" name="submit">Upload</button>
+            </form>
+        </div>
+    </section>
+</div>

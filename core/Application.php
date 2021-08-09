@@ -3,13 +3,10 @@
 namespace app\core;
 use app\core\db\Database;
 
-
-
 /**
  * Class Application
  * @package app\core
  */
-
 
 class Application
 {
@@ -19,7 +16,6 @@ class Application
     public string $adminLayout = 'dashboard';
     public string $userClass;
 
-
     public Router $router;
     public Request $request;
     public Response $response;
@@ -28,13 +24,8 @@ class Application
     public ?UserModel $user;
     public View $view;
 
-
-
     public static Application $app;
     public ?Controller $controller = null;
-
-
-
 
     public function __construct($rootPath, array $config)
     {
@@ -52,21 +43,13 @@ class Application
         $this->db = new Database($config['db']);
 
         $primaryValue = $this->session->get('user');
-        if ($primaryValue)
-
-        {
+        if ($primaryValue) {
             $primaryKey = $this->userClass::primaryKey();
 
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
-
-
         } else {
             $this->user = null;
-
         }
-
-
-
     }
 
     public static function isGuest(): bool
@@ -74,47 +57,45 @@ class Application
         return !self::$app->user;
     }
 
+    public static function isUser(): bool
+    {
+        if (self::$app->user === null || self::$app->user->Admin === 2 || self::$app->user->Admin === 3) {
+            return true;
+        }
 
+        return false;
+    }
 
     public static function isArtist(): bool
     {
-        if (self::$app->user === null ||
-            self::$app->user->Admin===1 ||
-            self::$app->user->Admin===3) {
-
-        return true;
-    }
+        if (self::$app->user === null || self::$app->user->Admin === 1 || self::$app->user->Admin === 3) {
+            return true;
+        }
 
         return false;
     }
 
     public static function isAdmin(): bool
     {
-        if (self::$app->user === null ||
-            self::$app->user->Admin===1 ||
-            self::$app->user->Admin===2) {
-
+        if (self::$app->user === null || self::$app->user->Admin === 1 || self::$app->user->Admin === 2) {
             return true;
-
         }
 
         return false;
     }
 
-
-
-
-    public function run()
+ public function run()
     {
         try {
             echo $this->router->resolve();
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->response->setStatusCode($e->getCode());
             echo $this->view->renderView('_error', [
-                'exception' => $e
+                'exception' => $e,
             ]);
         }
     }
+
 
     /**
      * @return \app\core\Controller
@@ -147,9 +128,4 @@ class Application
         $this->user = null;
         $this->session->remove('user');
     }
-
-
-
 }
-
-

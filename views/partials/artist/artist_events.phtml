@@ -1,0 +1,103 @@
+<?php
+/** @var $events\app\controllers\ArtistController */
+/** @var $artist\app\controllers\ArtistController */
+use app\core\Application;
+?>
+<div class="artist_main">
+   <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <div class="alert">
+        <?= Application::$app->session->getFlash('success')?>
+        <?= Application::$app->session->getFlash('error')?>
+    </div>
+    <div class="artist_content">
+        <div class="addButton">
+            <a href="add_event?id=<?=($artist['a_Id'])?>">Add Event <i class="fas fa-plus"></i></a>
+        </div>
+
+        <div>
+            <table class="tableEvents">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Url</th>
+                        <th>Edit</th>
+                        <th>Del</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($events as $item):?>
+
+                    <tr>
+                        <td><?=($item['eve_Name']); ?></td>
+                        <td><?=($item['eve_Date']); ?></td>
+                        <td><?=($item['eve_Time']); ?></td>
+                        <td><?=($item['Location']); ?></td>
+                        <td><?=($item['eve_Url']); ?></td>
+
+                        <td>
+                            <a href="edit_event?id=<?=($item['eve_Id'])?>"><i class="fas fa-pencil-alt"></i></a>
+                        </td>
+                        <td>
+                            <a href="delete_event?id=<?=$item['eve_Id']?>" class="delete" data-confirm="Are you sure to delete this Event?"><i class="fas fa-trash"></i></a>
+                        </td>
+
+                        <?php endforeach; ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

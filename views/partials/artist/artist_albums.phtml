@@ -1,0 +1,105 @@
+<?php
+/** @var   $this \app\core\View */
+/** @var $albums\app\controllers\ArtistController */
+/** @var $artist\app\controllers\Authcontroller */
+use app\core\Application;
+$this->title = 'Albums'; ?>
+<div class="artist_main">
+    <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <div class="alert">
+        <?= Application::$app->session->getFlash('success')?>
+        <?= Application::$app->session->getFlash('error')?>
+    </div>
+    <div class="artist_content">
+       
+        <div class="addButton">
+            <a href="create_album?id=<?=$artist['a_Id']?>">Add New Album <i class="fas fa-plus"></i> </a>
+        </div>
+        <section class="block size_b">
+           
+            <!-- item --><?php foreach ($albums as $album):?>
+                <div class="item">
+                    <a href="album_detail?id=<?=$album['alb_Id']?>">
+                        <!-- media -->
+                        <div class="media">
+                            <?php
+                            if (!empty($album['Cover'])) {
+                                ?>
+                                <img src="assets/uploads/albums_cover/<?=$album['Cover']?>" alt="album cover" />
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <!-- content -->
+                        <div class="content">
+                            <!-- top -->
+                            <!-- center -->
+                            <div class="center">
+                                <!-- line 1 -->
+                                <h2><?= $album ['a_Name']?></h2>
+
+                                <!-- line 2 -->
+                                <h4><?= $album ['alb_Title']?></h4>
+                            </div>
+                            <!-- bottom -->
+                            <div class="bottom"><?=$album['Genre']?></div>
+                            <div class="bottom"><?=$album ['ReleaseDate']?></div>
+                            
+                        </div>
+                    </a>
+                </div>
+
+            <?php endforeach; ?>
+        </section>
+    </div>
+    <!-- block -->
+</div>

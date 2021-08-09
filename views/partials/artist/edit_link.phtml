@@ -1,0 +1,77 @@
+<?php
+/** @var $link \app\controllers\ArtistController */
+/** @var $artist\app\controllers\ArtistController */
+
+
+$this->title = 'Edit Link'; ?>
+<div class="artist_main">
+        <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <section class="artist_content">
+        <div class="admin_view">
+            <h2>Edit link</h2>
+
+            <form method="post">
+                <div>
+                    <label for="s_Name">Name</label>
+                    <input type="text" id="s_Name" name="s_Name" value="<?=$link['s_Name']?>" />
+                </div>
+                <div>
+                    <label for="Url">Link</label>
+                    <input type="text" id="Url" name="Url" value="<?=$link['Url']?>" />
+                </div>
+
+                <input type="hidden" value="<?=$link['s_Id']?>" name="id" />
+                <button class="button" name="submit" type="submit">Update</button>
+            </form>
+        </div>
+    </section>
+</div>

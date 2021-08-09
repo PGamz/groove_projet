@@ -1,0 +1,109 @@
+<?php
+
+/** @var   $ualbum \app\controllers\ArtistController
+ */
+/** @var $artist\app\controllers\Authcontroller */
+/** @var   $cover \app\controllers\ArtistController
+ */
+
+use app\core\Application; ?>
+
+<div class="artist_main">
+    <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+
+    <section class="artist_content">
+        <div class="admin_view">
+            <div class="">
+                <h2>Edit Album</h2>
+                <div class="alert">
+                    <?= Application::$app->session->getFlash('error')?>
+                    <?= Application::$app->session->getFlash('done')?>
+                </div>
+
+                <section class="block size_c">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="feature artist">
+                            <!-- media -->
+                            <div class="mediaProfile">
+                                <?php
+                                if (!empty($ualbum['Cover'])) {
+                                    ?>
+                                    <img src="assets/uploads/albums_cover/<?=$ualbum['Cover']?>" alt="album cover" />
+                                    <?php
+                                }
+                                ?>
+                               
+                            </div>
+                            
+                            <div class="content">
+                                <!-- center -->
+
+                                <label for="alb_Title">Title</label>
+                                <input type="text" id="alb_Title" name="alb_Title" value="<?=$ualbum['alb_Title']?>" />
+
+                                <label for="Genre">Genre</label>
+                                <input type="text" id="Genre" name="Genre" value="<?=$ualbum['Genre']?>" />
+
+                                <label for="ReleaseDate">Release Date</label>
+                                <input type="date" id="ReleaseDate" name="ReleaseDate" value="<?=$ualbum['ReleaseDate']?>" />
+                                <div>
+                                    <input type="hidden" value="<?=$ualbum['alb_Id']?>" name="id" />
+                                    <button class="button" type="submit">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>

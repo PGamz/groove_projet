@@ -1,0 +1,32 @@
+<?php
+
+/** @var $artists\app\controllers\SiteController */
+/** @var  $this \app\core\View */
+
+
+$this->title = 'Artists'; ?>
+<!-- block -->
+
+<section class="block size_a">
+    <!-- item --><?php foreach ($artists as $item):?>
+        <div class="item">
+            <a href="artist_detail?id=<?= $item ['Id']?>">
+                <!-- media -->
+                <div class="media">
+                    <?php  if (!empty ($item['Photo'])){ ?>
+                        <img src="assets/uploads/artists_photo/<?= $item['Photo']?>" alt=" artist photo" />
+
+                    <?php } ?>
+                </div>
+                <!-- content -->
+                <div class="content">
+                    <!-- center -->
+                    <div class="center">
+                        <!-- line 1 -->
+                        <h2><?= $item['Name']?></h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</section>

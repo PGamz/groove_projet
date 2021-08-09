@@ -1,0 +1,108 @@
+<?php
+/** @var $artist\app\controllers\Artistcontroller */
+/** @var  $items \app\controllers\ArtistController */
+/** @var   $this \app\core\View */
+/** @var $links\app\controllers\ArtistController */
+use app\core\Application;
+
+$this->title = 'Edit profile'; ?>
+
+<div class="artist_main">
+        <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <section class="artist_content">
+        <div class="admin_view">
+            <div class="">
+                <h2>Edit your Profile</h2>
+                <div class="alert">
+                    <?= Application::$app->session->getFlash('error')?>
+                    <?= Application::$app->session->getFlash('success')?>
+                </div>
+
+                <section class="block size_c">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="feature artist">
+                            <!-- media -->
+                            <div class="mediaProfile">
+                                <?php
+                                if (!empty($artist['Photo'])){
+                                    ?>
+                                <img src="assets/uploads/artists_photo/<?= $items['Photo']?>" alt="" />
+                                <?php
+                                }
+                                ?>
+                                <a class="artistPhoto" href="artist_photo"> </a>
+                            </div>
+                            <!-- content -->
+                            <div class="content">
+                                <div class="center">
+                                    <!-- line 1 -->
+
+                                    <label for="a_Name">Artist name</label>
+                                    <input type="text" id="a_Name" name="a_Name" value="<?=$items['a_Name']?>" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- description -->
+                        <div class="description">
+                            <label for="Description">Description</label>
+                            <textarea class="editDescription" type="text" id="Description" name="Description"><?=$items['Description']?></textarea>
+                        </div>
+
+                        <input type="hidden" value="<?=$items['a_User_Id']?>" name="id" />
+                        <button class="button" name="submit" type="submit">Update</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </section>
+</div>

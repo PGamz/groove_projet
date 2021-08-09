@@ -10,13 +10,24 @@ class Request
 {
     public function getPath()
     {
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $position =strpos($path, '?');
-        if ($position === false) {
-            return $path;
+        if (isset($_SERVER['PATH_INFO'])) {
+            return $_SERVER['PATH_INFO'];
         }
+    
+        if (isset($_SERVER['BASE'])) {
+            $c = 1;
+            return str_replace($_SERVER['BASE'], '', strtok($_SERVER['REQUEST_URI'], '?'), $c);
+        }
+    
+        return '/';
+        
+        // $path = $_SERVER['REQUEST_URI'] ?? '/';
+        // $position =strpos($path, '?');
+        // if ($position === false) {
+        //     return $path;
+        // }
 
-        return substr($path, 0, $position);
+        // return substr($path, 0, $position);
         
     }
 

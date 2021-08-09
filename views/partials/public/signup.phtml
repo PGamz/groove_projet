@@ -1,0 +1,18 @@
+<?php
+/** @var $model \app\models\User */
+/** @var   $this \app\core\View*/
+$this->title = 'Sign Up'; ?>
+
+<section class="block size_d">
+    <?php $form = \app\core\form\Form::begin('', "post",'') ?>
+    <?= $form->field($model, 'Firstname', 'Firstname', 'Firstname') ?>
+    <?= $form->field($model, 'Lastname', 'Lastname', 'Lastname') ?>
+    <?= $form->field($model, 'Email', 'Email', 'Email') ?>
+    <?= $form->field($model, 'Nickname', 'Nickname', 'Nickname') ?>
+    <?= $form->field($model, 'Password', 'Password', 'Password')->passwordField() ?>
+    <?= $form->field($model, 'Password2','Password2', 'Password2')->passwordField() ?>
+    <div class="signup">
+        <button class="button" type="submit">Let's party</button>
+    </div>
+    <?php \app\core\form\Form::end() ?>
+</section>

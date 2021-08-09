@@ -1,0 +1,153 @@
+<?php
+/** @var $img\app\controllers\ArtistController */
+/** @var $artist\app\controllers\ArtistController */
+
+/** @var $links\app\controllers\ArtistController */
+/** @var $this \app\core\View*/
+
+use app\core\Application;
+
+$this->title = 'Artist profile'; ?>
+<div class="artist_main">
+    
+    
+    
+    <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <section class="artist_content">
+        <div class="admin_view">
+            <div class="access">
+                <h2>Artist profile</h2>
+                <a href="edit_artist">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+                <a href="artist_detail?id=<?=($artist['a_Id'])?>" target="_blank">
+                    <i class="far fa-eye"></i>
+                </a>
+                <a id="openModal">
+                    <i class="fas fa-trash"></i>
+                </a>            
+            </div>
+            <div id="del" class="modal">
+                
+                <div class="modal-content">
+                    <div class="container">
+                        <h1>Delete Artist Page</h1>
+                        <p>This will delete all content related to this Artist</p>
+                        <p>Are you sure you want to delete your page?</p>
+
+                        <div class="clearfix">
+                            <a onclick="document.getElementById('del')" class="cancelbtn" href="">Cancel</a>
+                            <a class="deletebtn" href="delete_artist_page?id=<?=($artist['a_Id'])?>">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert">
+                <?= Application::$app->session->getFlash('success')?>
+                <?= Application::$app->session->getFlash('error')?>
+            </div>
+
+            <section class="block size_c">
+                <div class="feature artist">
+                    <!-- media -->
+                    <div class="mediaProfile">
+                        <?php  if (!empty ($artist['Photo'])){ ?>
+
+                            <img src="assets/uploads/artists_photo/<?=$artist['Photo']?>" alt="artist photo" />
+
+                        <?php } ?>
+                    </div>
+
+                    <!-- content -->
+                    <div class="content">
+                        <!-- center -->
+                        <div class="center">
+                            <!-- line 1 -->
+                            <h2><?= $artist['a_Name']?></h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- description -->
+            <div class="description">
+                <p><?= $artist['Description']?></p>
+            </div>
+
+            <div>
+                <a href="add_link?id=<?=$artist['a_Id']?>">Add Link<i class="fas fa-plus"></i> </a>
+            </div>
+            <?php foreach ($links as $link):?>
+                <?php
+                if (!empty($link['s_Name']) && (!empty($link['Url']))){
+                    ?>
+
+                   <!-- control -->
+                        <div class="control">
+                            <a class="button" href="https://<?= $link['Url']?>" target="_blank"><?= $link['s_Name']?></a>
+                            <div class="control-options">
+                                <a href="edit_link?id=<?=($link['s_Id'])?>"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="delete_link?id=<?=$link['s_Id']?>" class="delete" data-confirm="Are you sure to delete this Link?"><i class="fas fa-trash"></i></a>
+                            </div>
+
+                        </div>
+
+
+                    <?php
+                }
+                ?>
+            <?php endforeach; ?>
+
+        </div>
+    </section>
+</div>

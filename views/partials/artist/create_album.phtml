@@ -1,0 +1,73 @@
+<?php
+/** @var  $this \app\core\View */
+/** @var $artist\app\controllers\ArtistController */
+/** @var $model \app\models\Album */
+
+$this->title = 'New Album'; ?>
+<div class="artist_main">
+        <aside>
+    <div class="asideburguer">
+        <img src="assets/gfx/toggle.svg" alt="toggle" />
+    </div>
+        <!-- nav -->
+        <nav>
+
+            <ul id="aside-nav" class="aside-links">
+
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_profile?id=<?=$artist['a_Id']?>">Artist profile</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <!-- home -->
+
+                        <a href="create_artist">Create Artist</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_albums">Albums</a>
+                    </li>
+                    <?php
+                }
+                ?>
+                <?php
+                if (!empty($artist['a_Id'])){
+                    ?>
+                    <li class="aside-link">
+                        <a href="artist_events">Events</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </nav>
+</aside>
+    <section class="artist_content">
+        <div class="admin_view">
+            <h2>Create Album</h2>
+
+            <?php $form = \app\core\form\Form::begin('', "post", "multipart/form-data") ?>
+            <?= $form->field($model, 'Title', 'Title', 'Title') ?>
+            <?= $form->field($model, 'Genre', 'Genre', 'Genre')?>
+            <?= $form->field($model, 'ReleaseDate', 'ReleaseDate', 'ReleaseDate') ->date()?>
+
+            <div class="signup">
+                <button class="button" type="submit">Save</button>
+            </div>
+            <?php \app\core\form\Form::end() ?>
+        </div>
+    </section>
+</div>

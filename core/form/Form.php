@@ -8,9 +8,9 @@ use app\core\Model;
 
 class Form
 {
-    public static function begin($action, $method): Form
+    public static function begin($action, $method, $enctype): Form
     {
-        echo sprintf('<form action="%s" method="%s">', $action, $method);
+        echo sprintf('<form action="%s" method="%s" enctype="%s">', $action, $method, $enctype);
         return new Form();
     }
 
@@ -19,14 +19,14 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model, $attribute): Field
+    public function field(Model $model, $for, $attribute, $id): Field
     {
-        return new Field($model, $attribute);
+        return new Field($model, $for, $attribute, $id);
     }
 
-    public function textArea(Model $model, $attribute): TextArea
+    public function textArea(Model $model, $for, $attribute, $id): TextArea
     {
-        return new Textarea($model, $attribute);
+        return new TextArea($model, $for, $attribute, $id);
     }
 }
 

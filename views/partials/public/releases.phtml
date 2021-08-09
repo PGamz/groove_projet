@@ -1,0 +1,42 @@
+<?php
+/** @var $albums\app\controllers\SiteController */
+/** @var  $this \app\core\View */
+$this->title = 'Releases'; ?>
+
+<!-- block -->
+<section class="block size_b">
+    <!-- item -->
+    <!-- item --><?php foreach ($albums as $album):?>
+        <div class="item">
+            <a href="album?id=<?= $album ['alb_Id']?>">
+                <!-- media -->
+                <div class="media">
+                    <?php
+                    if (!empty($album['Cover'])) {
+                        ?>
+                        <img src="assets/uploads/albums_cover/<?=$album['Cover']?>" alt="album cover" />
+                        <?php
+                    }
+                    ?>
+                </div>
+                <!-- content -->
+                <div class="content">
+                    <!-- top -->
+                    <!-- center -->
+                    <div class="center">
+                        <!-- line 1 -->
+                        <h3><?= $album ['a_Name']?></h3>
+
+                        <!-- line 2 -->
+                        <h4><?= $album ['alb_Title']?></h4>
+                    </div>
+                    <!-- bottom -->
+                    <div class="bottom"><?=$album['Genre']?></div>
+                    <div class="bottom"><?=$album ['ReleaseDate']?></div>
+                    
+                </div>
+            </a>
+        </div>
+
+    <?php endforeach; ?>
+</section>

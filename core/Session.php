@@ -46,7 +46,6 @@ class Session
     public function get($key)
     {
 
-
         return $_SESSION[$key] ?? false;
     }
 
@@ -67,10 +66,5 @@ class Session
         $_SESSION[self::FlASH_KEY] = $flashMessages;
     }
 
-    public static function getId(): int
-    {
-
-        return intval($_SESSION['user']);
-    }
 
 }

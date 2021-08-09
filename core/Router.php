@@ -1,8 +1,9 @@
 <?php
 
 namespace app\core;
-use app\core\exception\ForbiddenException;
+
 use app\core\exception\NotFoundException;
+
 
 /**
  * Class Router
@@ -71,5 +72,6 @@ class Router
       return call_user_func($callback, $this->request, $this->response);
       
     }
+
 
 }

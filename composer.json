@@ -1,7 +1,7 @@
 {
-    "name": "gamzd/mvc_framework",
+    "name": "pedrogam/pedrogam_mvc_project_v2",
     "authors": [
-        {
+         {
             "name": "Pedro Gamela",
             "email": "pgamela@hotmail.com"
         }
@@ -16,3 +16,4 @@
         "vlucas/phpdotenv": "^5.3"
     }
 }
+
